@@ -54,6 +54,22 @@ public class EventController {
 
         return "redirect:";
     }
+    @GetMapping("events/{edit}")
+    public String displayEditForm(Model model, @PathVariable int eventId) {
+       EventData.getById(eventId);
+       //model.addAttribute("title", "Edit Event NAME(id=ID)");
+       model.addAttribute(eventId);
+        return "events/edit";
+    }
+    @PostMapping("edit")
+    public String processEditForm(Model model, @RequestParam int eventId,
+                                            @RequestParam String name,
+                                            @RequestParam String description) {
+
+        model.addAttribute("events", EventData.getAll());
+        return "redirect:";
+    }
+
 
 
 }
