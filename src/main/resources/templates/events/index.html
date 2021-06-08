@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+<head th:replace="fragments :: head">
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
 <body class="container">
-
-<header th:replace="fragments :: header"></header>
-
+<nav th:replace="fragments :: navigation"></nav>
+<p th:unless="${events} and ${events.size()}">No Events!</p>
 <table class="table table-striped">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Name</th>
+        <th>Event Name</th>
         <th>Description</th>
+        <th>Location</th>
+        <th>Registration Required</th>
+        <th>Number of Attendees</th>
         <th>Contact Email</th>
+        <th>Type</th>
     </tr>
     </thead>
-    <tr th:each="event : ${events}">
-        <td th:text="${event.id}"></td>
-        <td th:text="${event.name}"></td>
-        <td th:text="${event.description}"></td>
-        <td th:text="${event.contactEmail}"></td>
-    </tr>
-    <th>Type</th>
-    <td th:text="${event.type.displayName}"></td>
+    <th:block th:each="event: ${events}">
+        <tr>
+            <td th:text="${event.id}"></td>
+            <td th:text="${event.name}"></td>
+            <td th:text="${event.description}"></td>
+            <td th:text="${event.location}"></td>
+            <td th:text="${event.registrationRequired}"></td>
+            <td th:text="${event.numberOfAttendees}"></td>
+            <td th:text="${event.contactEmail}"></td>
+            <td th:text="${event.type.displayName}"></td>
+            <td>
+                <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
+            </td>
+        </tr>
+    </th:block>
 </table>
-
 </body>
 </html>
