@@ -8,9 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
-/**
- * Created by Chris Bay
- */
+
 @Entity
 public class Event {
 
