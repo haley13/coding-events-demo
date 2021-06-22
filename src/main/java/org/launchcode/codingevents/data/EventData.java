@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.launchcode.codingevents.models.Event;
-
+//this is our pretend database
 public class EventData {
 
     private static Map<Integer, Event> events = new HashMap<>();

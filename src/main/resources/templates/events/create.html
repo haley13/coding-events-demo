@@ -3,9 +3,9 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<header th:replace="fragments :: header"></header>
+<nav th:replace="fragments :: navigation"></nav>
 
-<form method="post">
+<form method="post" th:action="@{/events/create}">
     <div class="form-group">
         <label>Name
             <input type="text" name="name" class="form-control">
