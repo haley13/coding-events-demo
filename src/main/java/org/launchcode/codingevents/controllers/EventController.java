@@ -54,27 +54,20 @@ public class EventController {
 
         return "redirect:";
     }
-    @GetMapping("events/{eventId}")
+    @GetMapping("edit/{eventId}")
     public String displayEditForm(Model model, @PathVariable int eventId) {
-       Event selectedEvent=EventData.getById(eventId);
-       EventData.getById(eventId);
-       //key and value on the model; "selectedEvent" is the name that we pass into the view the bind the model to the template
-       model.addAttribute("selectedEvent", selectedEvent);
-       String title="Edit Event" + selectedEvent.getName() + "(id =" + selectedEvent.getId() + ")";
-       model.addAttribute("title", title);
-       //model.addAttribute(eventId);
+        Event selectedEvent = EventData.getById(eventId);
+        model.addAttribute("selectedEvent", selectedEvent);
+        String title = "Edit Event" + selectedEvent.getName() + "(id=" + selectedEvent.getId() + ")";
+        model.addAttribute("title", title);
         return "events/edit";
     }
+
     @PostMapping("edit")
-    //@RequestMapping(value="eventsedit", method = {RequestMethod.GET, RequestMethod.POST})
-    public String processEditForm(Model model, @RequestParam int eventId,
-                                            @RequestParam String name,
-                                            @RequestParam String description) {
-        Event selectedEvent=EventData.getById(eventId);
+    public String processEditForm(int eventId, String name, String description) {
+        Event selectedEvent = EventData.getById(eventId);
         selectedEvent.setName(name);
         selectedEvent.setDescription(description);
-
-       // model.addAttribute("events", EventData.getAll());
         return "redirect:";
     }
 
