@@ -59,7 +59,7 @@ public class EventController {
        //@PathVariable tells Spring Boot that this particular handler is looking for a request to /hello/name and that
         //name can be anything, and we're going to take the value of that piece of data, the value of that anything and place
         //it in the method parameter name, variable we defined in the path template needs to be the
-        //exact same as the variable in the method parameter list
+        //exact same as the variable in the method parameter list; the variable is part of the paths
         Event selectedEvent = EventData.getById(eventId);
         model.addAttribute("selectedEvent", selectedEvent);
         String title = "Edit Event" + selectedEvent.getName() + "(id=" + selectedEvent.getId() + ")";
