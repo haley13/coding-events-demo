@@ -1,15 +1,21 @@
 package org.launchcode.codingevents.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.util.Objects;
+import javax.persistence.*;
 
 /**
  * Created by Chris Bay
  */
+@Entity
 public class Event {
 
+    @Id//tells our app that this should be considered a primary key
+    @GeneratedValue //it wants the database to generate values of our primary key, we don't need to keep track of the counter and updating it,
+    //we let the database generate a primary key for us
     private int id;
-    private static int nextId = 1;
 
     @NotBlank(message = "Name is required.")
     @Size(min=3, max=50, message = "Name must be between 3 and 50 characters.")
@@ -38,11 +44,8 @@ public class Event {
         this.location=location;
         this.numberOfAttendees= getNumberOfAttendees();
         this.registrationRequired=registrationRequired;
-
         this.contactEmail=contactEmail;
         this.type= type;
-        this.id = nextId;
-        nextId++;
     }
     public Event(){}
 
