@@ -13,8 +13,7 @@ import javax.persistence.*;
 public class Event {
 
     @Id//tells our app that this should be considered a primary key
-    @GeneratedValue //it wants the database to generate values of our primary key, we don't need to keep track of the counter and updating it,
-    //we let the database generate a primary key for us
+    @GeneratedValue
     private int id;
 
     @NotBlank(message = "Name is required.")
@@ -28,23 +27,12 @@ public class Event {
     @Email(message = "Invalid email. Try again.")
     private String contactEmail;
 
-    @NotBlank(message="Location cannot be left blank.")
-    private String location;
-
-    private int numberOfAttendees;
-
-    @AssertTrue(message = "Registration must be required at this time.")
-    private boolean registrationRequired;
-
     private EventType type;
 
-    public Event(String name, String description, String location,boolean registrationRequired, int numberOfAttendees, String contactEmail, EventType type) {
+    public Event(String name, String description, String contactEmail, EventType type) {
         this.name = name;
         this.description = description;
-        this.location=location;
-        this.numberOfAttendees= getNumberOfAttendees();
-        this.registrationRequired=registrationRequired;
-        this.contactEmail=contactEmail;
+        this.contactEmail = contactEmail;
         this.type= type;
     }
     public Event(){}
@@ -68,31 +56,6 @@ public class Event {
     public int getId() {
         return id;
     }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-    @Positive(message="Number of Attendees must be one or more.")
-    public int getNumberOfAttendees() {
-        return numberOfAttendees;
-    }
-
-    public void setNumberOfAttendees(int numberOfAttendees) {
-        this.numberOfAttendees = numberOfAttendees;
-    }
-
-    public boolean isRegistrationRequired() {
-        return registrationRequired;
-    }
-
-    public void setRegistrationRequired(boolean registrationRequired) {
-        this.registrationRequired = registrationRequired;
-    }
-
     public String getContactEmail() {
         return contactEmail;
     }
