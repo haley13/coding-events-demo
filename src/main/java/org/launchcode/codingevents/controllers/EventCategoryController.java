@@ -16,6 +16,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("eventCategories")
 public class EventCategoryController {
+
     @Autowired
     private EventCategoryRepository eventCategoryRepository;
 
